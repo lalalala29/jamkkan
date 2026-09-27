@@ -276,3 +276,25 @@ a {
   }
 
 }
+
+/* ========================================
+   COMMON FORM ERROR
+======================================== */
+
+.input-wrap input.input-error {
+  border-color: #D94B4B;
+  background: #FFF9F9;
+}
+
+.input-wrap input.input-error:focus {
+  border-color: #D94B4B;
+  box-shadow: 0 0 0 3px rgba(217, 75, 75, .10);
+}
+
+.error-message {
+  margin: 10px 0 0;
+  color: #C93D3D;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 600;
+}

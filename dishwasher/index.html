@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>식기세척기 살까 말까? 구매 전 실제 비용 계산 | 잠깐.</title>
+  <meta name="description" content="식기세척기 사기 전에 잠깐. 우리 집 사용패턴을 기준으로 실제 사용비용, 되찾는 시간, 용량 선택 참고정보를 확인해보세요.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    .calculator-hero { padding:75px 0 55px; background:var(--navy); color:var(--cream); }
+    .calculator-hero .back { display:inline-block; margin-bottom:38px; color:rgba(255,255,255,.55); font-size:14px; }
+    .calculator-hero .back:hover { color:var(--orange); }
+    .calculator-hero h1 { margin:0; font-size:clamp(38px,6vw,62px); line-height:1.15; letter-spacing:-3px; }
+    .calculator-hero h1 strong { color:var(--orange); }
+    .calculator-hero p { margin:24px 0 0; color:rgba(255,255,255,.65); font-size:17px; line-height:1.7; }
+
+    .calculator-section { padding:70px 0 110px; background:#F8F8F6; }
+    .calculator-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(320px,.85fr); gap:30px; align-items:start; }
+    .calculator-box,.result-box { background:#fff; border:1px solid var(--line); border-radius:24px; padding:36px; }
+    .calculator-box h2,.result-box h2 { margin:0 0 10px; font-size:25px; letter-spacing:-1px; }
+    .box-description { margin:0 0 36px; color:var(--muted); font-size:14px; line-height:1.6; }
+
+    .input-section-title { margin:38px 0 8px; padding-top:8px; color:var(--orange); font-size:12px; font-weight:800; letter-spacing:1.5px; }
+    .input-section-title.first { margin-top:0; padding-top:0; }
+    .input-group { padding:24px 0; border-bottom:1px solid #EEEEEA; }
+    .input-group label { display:block; margin-bottom:8px; font-weight:700; font-size:16px; }
+    .input-help { margin:0 0 14px; color:var(--muted); font-size:13px; line-height:1.55; }
+    .input-wrap { position:relative; }
+    .input-wrap input { width:100%; height:52px; padding:0 65px 0 15px; border:1px solid #DADADA; border-radius:12px; font-family:inherit; font-size:17px; outline:none; background:#fff; }
+    .input-wrap input:focus { border-color:var(--orange); }
+    .input-wrap select { width:100%; height:52px; padding:0 48px 0 15px; border:1px solid #DADADA; border-radius:12px; background:#fff; color:var(--text); font-family:inherit; font-size:16px; outline:none; cursor:pointer; appearance:none; -webkit-appearance:none; }
+    .input-wrap select:focus { border-color:var(--orange); }
+    .select-wrap::after { content:"⌄"; position:absolute; right:17px; top:50%; transform:translateY(-70%); color:var(--muted); font-size:20px; line-height:1; pointer-events:none; }
+    .input-unit { position:absolute; right:16px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:14px; pointer-events:none; }
+
+    .calculate-button { width:100%; height:58px; margin-top:32px; border:0; border-radius:14px; background:var(--orange); color:#fff; font-family:inherit; font-size:17px; font-weight:800; cursor:pointer; }
+    .calculate-button:hover { filter:brightness(.96); }
+
+    .result-box { position:sticky; top:24px; }
+    .result-empty { padding:55px 10px; text-align:center; color:var(--muted); line-height:1.7; }
+    .result-content { display:none; }
+    .result-main { padding:26px 0 30px; border-bottom:1px solid #EEEEEA; }
+    .result-main span { color:var(--muted); font-size:14px; }
+    .result-main strong { display:block; margin-top:7px; color:var(--orange); font-size:38px; letter-spacing:-2px; }
+    .result-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:25px 0; }
+    .result-item { padding:18px; background:#F8F8F6; border-radius:14px; }
+    .result-item span { display:block; margin-bottom:7px; color:var(--muted); font-size:12px; }
+    .result-item strong { font-size:18px; letter-spacing:-.5px; }
+    .result-message { margin-top:5px; padding:22px; background:var(--cream); border-radius:14px; line-height:1.7; font-size:14px; }
+    .result-message strong { color:var(--orange); }
+
+    .capacity-result { margin-top:18px; padding:22px; border:1px solid var(--line); border-radius:14px; }
+    .capacity-label { display:block; margin-bottom:8px; color:var(--muted); font-size:12px; }
+    .capacity-result > strong { display:block; color:var(--text); font-size:21px; letter-spacing:-.7px; }
+    .capacity-result > p { margin:12px 0 0; color:var(--muted); font-size:13px; line-height:1.65; }
+    .capacity-result .capacity-source { margin-top:15px; padding-top:14px; border-top:1px solid #EEEEEA; color:#999; font-size:10px; }
+
+    .check-result { margin-top:18px; padding:22px; background:#F8F8F6; border-radius:14px; }
+    .check-result strong { display:block; margin-bottom:12px; font-size:15px; }
+    .check-result ul { margin:0; padding-left:19px; color:var(--muted); font-size:13px; line-height:1.8; }
+
+    .assumption { margin:18px 0 0; color:#929292; font-size:11px; line-height:1.6; }
+    .result-summary { margin:18px 0 0; padding:14px 16px; background:#F8F8F6; border-radius:12px; color:var(--muted); font-size:12px; line-height:1.6; }
+    .result-stale { display:none; margin:16px 0 0; padding:12px 14px; border-radius:10px; background:#FFF7EE; color:#8A531F; font-size:12px; font-weight:700; line-height:1.5; }
+    .result-formula { display:block; margin-top:7px; color:var(--muted); font-size:11px; font-weight:400; line-height:1.45; }
+    .result-final { margin-top:4px; padding:24px 22px; background:var(--navy); border-radius:16px; color:var(--cream); }
+    .result-final span { display:block; color:rgba(255,255,255,.62); font-size:13px; line-height:1.5; }
+    .result-final strong { display:block; margin-top:8px; color:var(--orange); font-size:34px; letter-spacing:-1.5px; }
+    .result-final .result-formula { color:rgba(255,255,255,.55); }
+    .result-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px; }
+    .result-action-button { min-height:48px; padding:10px 12px; border-radius:12px; border:1px solid var(--line); background:#fff; color:var(--text); font-family:inherit; font-size:13px; font-weight:700; cursor:pointer; }
+    .result-action-button.primary { border-color:var(--orange); background:var(--orange); color:#fff; }
+    .result-action-button:hover { filter:brightness(.97); }
+
+    .explanation { padding:100px 0; }
+    .explanation-inner { max-width:760px; }
+    .explanation h2 { margin:0 0 24px; font-size:36px; letter-spacing:-1.5px; }
+    .explanation p { color:var(--muted); line-height:1.9; }
+
+    @media (max-width:800px) {
+      .calculator-hero { padding:55px 0 45px; }
+      .calculator-hero .back { margin-bottom:28px; }
+      .calculator-layout { grid-template-columns:1fr; }
+      .calculator-box,.result-box { padding:25px; border-radius:18px; }
+      .result-box { position:static; }
+      .calculator-section { padding:40px 0 75px; }
+      .explanation { padding:75px 0; }
+      .explanation h2 { font-size:30px; }
+    }
+  
+    .guide-section { margin:0; padding:0; }
+    .guide-intro { margin-bottom:30px; }
+    .guide-kicker { margin:0 0 8px; color:var(--orange); font-size:13px; font-weight:800; }
+    .guide-section h2 { margin:0; color:var(--navy); font-size:28px; line-height:1.35; letter-spacing:-1px; }
+    .guide-section h3 { margin:0 0 10px; color:var(--navy); font-size:19px; line-height:1.45; }
+    .guide-section p { margin:0; color:var(--muted); font-size:15px; line-height:1.85; }
+    .guide-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+    .guide-card { padding:24px; border:1px solid var(--line); border-radius:16px; background:#fff; }
+    .guide-card strong { color:var(--text); }
+    .guide-note { margin-top:16px; padding:20px 22px; border-radius:16px; background:var(--cream); }
+    .guide-source { margin-top:22px !important; font-size:12px !important; color:#8A8A8A !important; }
+    .guide-source a { color:inherit; text-underline-offset:3px; }
+    @media (max-width:720px) {
+      .guide-section { padding-bottom:48px; }
+      .guide-section h2 { font-size:23px; }
+      .guide-grid { grid-template-columns:1fr; }
+      .guide-card { padding:20px; }
+    }
+
+    /* V1.2: existing page labels and SEO kicker use the same brand orange. */
+    .calculator-hero .eyebrow,
+    .explanation .section-label,
+    .guide-kicker {
+      color: var(--orange);
+    }
+
+    /* V1.2: SEO content follows the same 760px content line as WHY THIS NUMBER? */
+    .guide-section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 0 64px;
+    }
+    .guide-intro {
+      max-width: none;
+    }
+
+  
+    .guide-seo { padding:56px 0 0; }
+    @media (max-width:720px) {
+      .guide-seo { padding-top:38px; }
+    }
+
+  
+    /* V1.3 — WHY THIS NUMBER?와 동일한 타이포그래피 리듬 */
+    .guide-seo { padding: 36px 0 0; }
+    .guide-section { max-width: 760px; margin: 0 auto; padding: 0 0 64px; }
+    .guide-intro { margin: 0 0 34px; }
+    .guide-intro .section-label {
+      margin: 0 0 14px;
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.4;
+      letter-spacing: .08em;
+    }
+    .guide-intro h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -1.4px;
+    }
+    .guide-intro .section-line {
+      width: 42px;
+      height: 3px;
+      margin: 20px 0 22px;
+      border-radius: 999px;
+      background: var(--orange);
+    }
+    .guide-intro > p:last-child {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.85;
+    }
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 16px;
+    }
+    .guide-card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+    }
+    .guide-card h3,
+    .guide-note h3 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.5;
+      letter-spacing: -.4px;
+    }
+    .guide-card p,
+    .guide-note p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .guide-note {
+      margin-top: 16px;
+      padding: 22px 24px;
+      border-radius: 16px;
+      background: var(--cream);
+    }
+    .guide-source {
+      margin: 20px 0 0 !important;
+      color: #8A8A8A !important;
+      font-size: 11px !important;
+      line-height: 1.7 !important;
+    }
+    @media (max-width:720px) {
+      .guide-seo { padding-top: 32px; }
+      .guide-section { padding-bottom: 48px; }
+      .guide-intro h2 { font-size: 28px; letter-spacing: -1px; }
+      .guide-grid { grid-template-columns: 1fr; }
+      .guide-card { padding: 20px; }
+    }
+
+  
+    /* V1.4 — 하단 제목을 WHY THIS NUMBER? 영역과 정확히 동일하게 */
+    .guide-intro h2 {
+      margin: 0 0 24px;
+      font-size: 36px;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: -1.5px;
+    }
+    .guide-intro .section-label {
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.4;
+      letter-spacing: .08em;
+    }
+    @media (max-width:800px) {
+      .guide-intro h2 {
+        font-size: 30px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="../" class="logo">잠깐.</a>
+      <span class="header-message">결정하기 전에, 잠깐.</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="calculator-hero">
+      <div class="container">
+        <a href="../" class="back">← 처음으로</a>
+        <p class="eyebrow">DISHWASHER</p>
+        <h1>식기세척기 사기 전에, <span>잠깐.</span></h1>
+        <p>제품 가격만으로는 알기 어렵습니다.<br>우리 집 사용패턴과 되찾는 시간을 같이 계산해보세요.</p>
+      </div>
+    </section>
+
+    <section class="calculator-section">
+      <div class="container calculator-layout">
+        <div class="calculator-box">
+          <h2>우리 집 기준으로 계산하기</h2>
+          <p class="box-description">정확한 숫자가 아니어도 괜찮습니다. 평소 생활에 가까운 값을 넣어보세요.</p>
+
+          <p class="input-section-title first">우리 집</p>
+
+          <div class="input-group">
+            <label for="household">몇 명이 함께 살고 있나요?</label>
+            <p class="input-help">평소 식사를 함께하는 가구원 수를 기준으로 입력해주세요.</p>
+            <div class="input-wrap">
+              <input type="number" id="household" value="2" min="1" max="10">
+              <span class="input-unit">명</span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="dishLevel">평소 한 번에 나오는 식기량은 어떤가요?</label>
+            <p class="input-help">접시뿐 아니라 밥·국그릇, 컵, 냄비와 프라이팬 같은 조리도구까지 생각해주세요.</p>
+            <div class="input-wrap select-wrap">
+              <select id="dishLevel">
+                <option value="low">적은 편 — 간단한 식사, 식기가 적음</option>
+                <option value="high">많은 편 — 반찬·조리도구까지 많이 나옴</option>
+              </select>
+            </div>
+          </div>
+
+          <p class="input-section-title">구매 조건</p>
+
+          <div class="input-group">
+            <label for="price">식기세척기 가격</label>
+            <p class="input-help">설치비가 있다면 제품 가격에 더해서 입력해주세요.</p>
+            <div class="input-wrap">
+              <input type="text" id="price" value="1200000" inputmode="numeric" autocomplete="off">
+              <span class="input-unit">원</span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="years">몇 년 정도 사용할 예정인가요?</label>
+            <div class="input-wrap">
+              <input type="number" id="years" value="7" min="1" max="30">
+              <span class="input-unit">년</span>
+            </div>
+          </div>
+
+          <p class="input-section-title">사용 패턴</p>
+
+          <div class="input-group">
+            <label for="uses">일주일에 몇 번 사용할까요?</label>
+            <p class="input-help">하루 한 번 사용한다면 7회를 입력하면 됩니다.</p>
+            <div class="input-wrap">
+              <input type="number" id="uses" value="7" min="1" max="30">
+              <span class="input-unit">회</span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="currentMinutes">지금 설거지 한 번에 걸리는 시간</label>
+            <p class="input-help">설거지와 정리까지 직접 움직이는 시간을 생각해주세요.</p>
+            <div class="input-wrap">
+              <input type="number" id="currentMinutes" value="25" min="1" max="180">
+              <span class="input-unit">분</span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="remainingMinutes">식기세척기를 써도 직접 해야 할 시간</label>
+            <p class="input-help">아직 식기세척기를 쓰지 않는다면 예상값을 넣어주세요. 음식물 제거 + 넣기 + 꺼내기 + 남은 손설거지 시간을 합쳐 생각하면 됩니다.</p>
+            <div class="input-wrap">
+              <input type="number" id="remainingMinutes" value="10" min="0" max="180">
+              <span class="input-unit">분</span>
+            </div>
+          </div>
+
+          <div id="resultStale" class="result-stale">입력값이 변경되었습니다. 변경한 값으로 다시 계산해주세요.</div>
+
+            <button type="button" id="calculateButton" class="calculate-button">계산해보기</button>
+        </div>
+
+        <aside class="result-box">
+          <h2>계산 결과</h2>
+          <div id="resultEmpty" class="result-empty">왼쪽에 우리 집 사용패턴을 입력하고<br>계산해보세요.</div>
+
+          <div id="resultContent" class="result-content">
+            <div id="resultSummary" class="result-summary"></div>
+            
+
+            <div class="result-grid">
+              <div class="result-item">
+                <span id="totalCostLabel">예상 총비용</span>
+                <strong id="totalCost">-</strong>
+                <small id="totalCostFormula" class="result-formula"></small>
+              </div>
+              <div class="result-item">
+                <span id="totalUsesLabel">예상 사용횟수</span>
+                <strong id="totalUses">-</strong>
+                <small id="totalUsesFormula" class="result-formula"></small>
+              </div>
+              <div class="result-item">
+                <span>1회 사용할 때 드는 비용</span>
+                <strong id="costPerUse">-</strong>
+                <small id="costPerUseFormula" class="result-formula"></small>
+              </div>
+              <div class="result-item">
+                <span id="savedHoursLabel">되찾는 시간</span>
+                <strong id="savedHours">-</strong>
+                <small id="savedHoursFormula" class="result-formula"></small>
+              </div>
+            </div>
+
+            <div class="result-final">
+              <span>결국, 1시간을 얼마에 사는 셈일까?</span>
+              <strong id="costPerHour">-</strong>
+              <small id="costPerHourFormula" class="result-formula"></small>
+            </div>
+
+            <div class="result-message" id="resultMessage"></div>
+
+            <div class="capacity-result">
+              <span class="capacity-label">우리 집 용량 참고</span>
+              <strong id="capacityTitle">-</strong>
+              <p id="capacityDescription"></p>
+              <p class="capacity-source">한국소비자원 식기세척기 일반 구매·선택 가이드 기준</p>
+            </div>
+
+            <div class="check-result">
+              <strong>구매 전에 같이 확인해보세요.</strong>
+              <ul>
+                <li>냄비·프라이팬까지 함께 넣을지</li>
+                <li>하루 식기를 모아서 한 번에 돌릴지</li>
+                <li>설치 공간과 급·배수 조건이 맞는지</li>
+                <li>건조방식에 따른 전기 사용량과 실제 유지비가 어떤지</li>
+              </ul>
+            </div>
+
+            <div class="result-actions">
+              <button type="button" id="editButton" class="result-action-button primary">값 바꿔서 다시 계산</button>
+              <button type="button" id="resetButton" class="result-action-button">처음부터</button>
+            </div>
+
+            <p class="assumption">비용과 시간 결과는 입력값과 세제비 참고값을 이용한 추정치입니다. 세제비는 한국소비자원 2026년 시험의 12~14인용 권장사용량 기준 6개 제품 1회 가격 평균(약 538원)을 반올림한 540원을 적용합니다. 전기·수도요금은 제품과 사용환경에 따라 달라 총비용에서 제외합니다. 용량 정보는 한국소비자원 구매·선택 가이드의 범위 안에서만 표시합니다.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="explanation">
+      <div class="container explanation-inner">
+        <p class="section-label">WHY THIS NUMBER?</p>
+        <h2>식기세척기의 가격은<br>구매가격만이 아닙니다.</h2>
+        <p>같은 가격의 식기세척기라도 일주일에 두 번 쓰는 집과 매일 쓰는 집의 실제 사용가치는 다릅니다. 잠깐.은 제품 가격뿐 아니라 사용기간과 사용횟수에 따른 예상 세제비, 그리고 줄어드는 설거지 시간을 함께 계산합니다.</p>
+        <p>결과가 구매 여부를 결정해주지는 않습니다. 되찾는 시간 1시간에 얼마를 지불하는 셈인지 확인한 뒤, 그 시간이 나에게 그만한 가치가 있는지 판단해보세요.</p>
+      </div>
+    </section>
+  </main>
+
+  
+  <section class="guide-seo">
+    <div class="container">
+      <div class="guide-section" aria-labelledby="dishwasher-guide-title">
+        <div class="guide-intro">
+          <p class="section-label">BEFORE YOU DECIDE</p>
+          <h2 id="dishwasher-guide-title">결과를 볼 때<br>이것도 확인해보세요.</h2>
+          <div class="section-line" aria-hidden="true"></div>
+          <p>계산 결과에는 숫자로 표현하기 어려운 조건도 있습니다. 실제 구매 전에는 용량과 전기·수도요금, 설치 조건을 함께 확인해보세요.</p>
+        </div>
+
+        <div class="guide-grid">
+          <article class="guide-card">
+            <h3>몇 인용을 봐야 할까요?</h3>
+            <p>가구원 수만으로 정하기보다 실제 식기량을 함께 보는 편이 좋습니다. 한국소비자원 구매·선택 가이드는 1~2인 가구와 3~4인 가구에서 식기량에 따라 비교할 용량을 달리 제시합니다. 계산기의 용량 참고도 이 범위 안에서만 안내합니다.</p>
+          </article>
+
+          <article class="guide-card">
+            <h3>세제비는 어떻게 계산하나요?</h3>
+            <p>한국소비자원 2026년 시험에서 12~14인용 권장사용량 기준 6개 제품의 1회 세척당 가격은 384~723원이었습니다. 잠깐.은 이 6개 제품 평균 약 538원을 반올림한 540원을 참고값으로 사용횟수에 곱합니다. 전기·수도요금은 제품과 사용환경에 따라 달라 계산에서 제외합니다.</p>
+          </article>
+
+          <article class="guide-card">
+            <h3>1회 사용비용은 무엇인가요?</h3>
+            <p>제품가격과 사용기간 동안의 예상 세제비를 합친 뒤 같은 기간의 예상 사용횟수로 나눈 값입니다. 같은 제품이라도 얼마나 자주, 오래 사용하는지에 따라 1회당 비용은 달라집니다.</p>
+          </article>
+
+          <article class="guide-card">
+            <h3>1시간의 가격은 어떻게 보나요?</h3>
+            <p>식기세척기를 쓰면서 줄어드는 직접 작업시간을 모두 합친 뒤 총비용을 그 시간으로 나눈 값입니다. 정답이나 구매 점수가 아니라, 되찾는 시간이 나에게 어느 정도 가치인지 비교하기 위한 기준입니다.</p>
+          </article>
+        </div>
+
+        <div class="guide-note">
+          <h3>잠깐.은 결정을 대신하지 않습니다.</h3>
+          <p>내가 지불할 비용과 되찾을 시간을 같은 화면에 놓고 비교할 수 있게 합니다. 설치 공간, 급·배수 조건, 건조방식, 실제 식기량처럼 숫자로 다 담기 어려운 조건은 구매 전에 별도로 확인해주세요.</p>
+        </div>
+
+        <p class="guide-source">참고: 한국소비자원 「소형 식기세척기 구매·선택 가이드」(2025.9), 「식기세척기 세제 구매·선택 가이드」(2026.1)</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <strong>잠깐.</strong>
+      <p>결정을 대신하지 않습니다.<br>결정하기 전에 한 번 더 볼 수 있게 합니다.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/common.js"></script>
+  <script src="./calculator.js"></script>
+</body>
+</html>
