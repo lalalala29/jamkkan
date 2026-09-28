@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>음식물처리기 살까 말까? 구매 전 실제 비용 계산 | 잠깐.</title>
+  <meta name="description" content="음식물처리기 사기 전에 잠깐. 우리 집 배출 횟수와 사용패턴을 기준으로 실제 유지비, 되찾는 시간, 건조분쇄형·미생물형 선택 기준을 확인해보세요.">
+  <link rel="canonical" href="https://jamkkan.me/food-waste/">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/calculator.css">
+</head>
+<body>
+  <header class="header"><div class="container header-inner"><a href="../" class="logo">잠깐.</a><span class="header-message">결정하기 전에, 잠깐.</span></div></header>
+  <main>
+    <section class="calculator-hero"><div class="container">
+      <a href="../" class="back">← 처음으로</a><p class="eyebrow">FOOD WASTE DISPOSER</p>
+      <h1>음식물처리기 사기 전에, <span>잠깐.</span></h1>
+      <p>제품 가격만 보지 말고,<br>음식물쓰레기를 버리러 가는 시간과 예상 유지비까지 같이 계산해보세요.</p>
+    </div></section>
+
+    <section class="calculator-section"><div class="container calculator-layout">
+      <div class="calculator-box">
+        <h2>우리 집 기준으로 계산하기</h2>
+        <p class="box-description">정확한 숫자가 아니어도 괜찮습니다. 평소 생활에 가까운 값을 넣어보세요.</p>
+        <p class="input-section-title first">현재 배출 패턴</p>
+        <div class="input-group"><label for="trips">일주일에 음식물쓰레기를 몇 번 버리나요?</label><div class="input-wrap"><input type="number" id="trips" value="4" min="1" max="21"><span class="input-unit">회</span></div></div>
+        <div class="input-group"><label for="minutesPerTrip">한 번 버리는 데 직접 쓰는 시간</label><p class="input-help">묶고 정리하는 시간부터 배출장소까지 다녀오는 시간을 합쳐 생각해보세요.</p><div class="input-wrap"><input type="number" id="minutesPerTrip" value="7" min="1" max="60"><span class="input-unit">분</span></div></div>
+
+        <p class="input-section-title">구매 조건</p>
+        <div class="input-group"><label for="price">생각 중인 음식물처리기 가격</label><p class="input-help">배송·설치비가 따로 든다면 제품 가격에 더해서 입력해주세요.</p><div class="input-wrap"><input type="text" id="price" value="500000" inputmode="numeric" autocomplete="off"><span class="input-unit">원</span></div></div>
+        <div class="input-group"><label for="years">몇 년 정도 사용할 예정인가요?</label><div class="input-wrap"><input type="number" id="years" value="5" min="1" max="20"><span class="input-unit">년</span></div></div>
+
+        <div class="check-result">
+          <strong>유지비는 월 8,000원으로 계산합니다.</strong>
+          <p>한국소비자원 건조·분쇄형 9개 제품 시험에서 주 2회 사용 시 연간 전기요금은 6,000~24,300원, 탈취필터 교체비용은 46,000~159,600원이었습니다. 월 8,000원은 이 시험 범위를 참고해 잠깐.이 계산 편의를 위해 정한 대표 가정값이며, 특정 제품의 실제 유지비나 공식 평균값은 아닙니다.</p>
+          <p class="capacity-source"><a href="https://www.kca.go.kr/kca/sub.do?menukey=5293&amp;mode=view&amp;no=1003809028" target="_blank" rel="noopener noreferrer">한국소비자원 시험·평가 결과 보기</a></p>
+        </div>
+
+        <div id="resultStale" class="result-stale">입력값이 변경되었습니다. 변경한 값으로 다시 계산해주세요.</div>
+        <button type="button" id="calculateButton" class="calculate-button">계산해보기</button>
+      </div>
+
+      <aside class="result-box"><h2>계산 결과</h2>
+        <div id="resultEmpty" class="result-empty">왼쪽에 우리 집 사용패턴을 입력하고<br>계산해보세요.</div>
+        <div id="resultContent" class="result-content">
+          <div id="resultSummary" class="result-summary"></div>
+          <div class="result-grid">
+            <div class="result-item"><span id="totalCostLabel">예상 총비용</span><strong id="totalCost">-</strong><small id="totalCostFormula" class="result-formula"></small></div>
+            <div class="result-item"><span id="totalTripsLabel">줄일 수 있는 배출횟수</span><strong id="totalTrips">-</strong><small id="totalTripsFormula" class="result-formula"></small></div>
+            <div class="result-item"><span>배출 1회를 줄이는 비용</span><strong id="costPerTrip">-</strong><small id="costPerTripFormula" class="result-formula"></small></div>
+            <div class="result-item"><span id="savedHoursLabel">되찾는 시간</span><strong id="savedHours">-</strong><small id="savedHoursFormula" class="result-formula"></small></div>
+          </div>
+          <div class="result-final"><span>결국, 1시간을 얼마에 사는 셈일까?</span><strong id="costPerHour">-</strong><small id="costPerHourFormula" class="result-formula"></small></div>
+          <div class="result-message" id="resultMessage"></div>
+          <div class="check-result"><strong>구매 전에 같이 확인해보세요.</strong><ul><li>내가 자주 버리는 음식물을 투입할 수 있는지</li><li>필터·미생물제 등 소모품 교체주기와 가격</li><li>소음·냄새와 설치공간, 환기 조건</li><li>처리 후 부산물을 어떻게 배출해야 하는지</li></ul></div>
+          <div class="result-actions"><button type="button" id="editButton" class="result-action-button primary">값 바꿔서 다시 계산</button><button type="button" id="resetButton" class="result-action-button">처음부터</button></div>
+          <div class="affiliate-slot" data-category="음식물처리기" data-url=""></div>
+          <p class="assumption">결과는 입력한 제품가격·배출패턴과 월 8,000원의 유지비 가정값을 이용한 추정치입니다. 통 비우기·세척·필터 교체 등 제품별 관리시간은 표준화하기 어려워 되찾는 시간 계산에 포함하지 않았습니다. 실제 제품의 유지비와 관리방식은 구매 전에 확인해주세요.</p>
+        </div>
+      </aside>
+    </div></section>
+
+    <section class="explanation"><div class="container explanation-inner"><p class="section-label">WHY THIS NUMBER?</p><h2>음식물처리기의 가격은<br>제품값만이 아닙니다.</h2><p>같은 가격의 제품이라도 음식물쓰레기를 자주 버리는 집과 일주일에 한 번만 버리는 집의 체감가치는 다릅니다. 잠깐.은 제품 가격과 예상 유지비, 지금 음식물 배출에 쓰는 시간을 함께 계산합니다.</p><p>결과는 구매 점수가 아닙니다. 음식물 배출을 줄이기 위해 1회당 얼마를 쓰는지, 되찾는 시간 1시간에 얼마를 지불하는지 확인한 뒤 그 편리함이 나에게 그만한 가치가 있는지 판단해보세요.</p></div></section>
+  </main>
+
+  <section class="guide-seo"><div class="container"><div class="guide-section" aria-labelledby="food-waste-guide-title">
+    <div class="guide-intro"><p class="section-label">BEFORE YOU DECIDE</p><h2 id="food-waste-guide-title">건조분쇄형? 미생물형?<br>생활패턴부터 보세요.</h2><div class="section-line" aria-hidden="true"></div><p>처리 방식마다 사용감과 관리 포인트가 다릅니다. 계산 결과와 함께 내가 원하는 사용방식을 먼저 정해보세요.</p></div>
+    <div class="guide-grid">
+      <article class="guide-card"><h3>건조분쇄형을 볼 때</h3><p>음식물을 모아 처리하고 처리 후 통을 비우는 방식이 생활에 맞는지 확인하세요. 필터 등 소모품 비용과 세척·비움 주기도 제품별로 함께 비교하는 편이 좋습니다.</p></article>
+      <article class="guide-card"><h3>미생물형을 볼 때</h3><p>음식물이 생길 때마다 수시로 넣는 사용방식을 선호한다면 비교해볼 수 있습니다. 다만 미생물 상태 관리와 제품별 투입 제한 음식은 구매 전에 확인해야 합니다.</p></article>
+      <article class="guide-card"><h3>유지비는 제품마다 차이가 큽니다.</h3><p>한국소비자원 시험에서 건조·분쇄형 제품의 전기료와 탈취필터 비용은 제품별 차이가 컸습니다. 계산기는 월 8,000원을 대표 가정값으로 사용하므로 실제 구매 후보의 유지비와 비교해보세요.</p></article>
+      <article class="guide-card"><h3>시간만 줄어드는 건 아닙니다.</h3><p>냄새나 초파리, 물이 새는 음식물 봉투처럼 숫자로 환산하기 어려운 불편도 있습니다. 반대로 처리기 자체의 소음·세척·관리도 새로 생길 수 있으니 함께 비교하세요.</p></article>
+    </div>
+    <div class="guide-note"><h3>잠깐.은 결정을 대신하지 않습니다.</h3><p>구매비와 유지비, 줄어드는 배출횟수와 시간을 같은 화면에 놓고 비교할 수 있게 합니다. 실제 구매 전에는 제품별 처리 가능 음식물, 부산물 배출방법과 설치·관리 조건을 반드시 확인해주세요.</p></div>
+  </div></div></section>
+
+  <footer class="footer"><div class="container footer-inner"><strong>잠깐.</strong><p>결정을 대신하지 않습니다.<br>결정하기 전에 한 번 더 볼 수 있게 합니다.</p></div></footer>
+  <script src="../assets/js/common.js"></script><script src="../assets/js/affiliate.js"></script><script src="./calculator.js"></script>
+</body>
+</html>
