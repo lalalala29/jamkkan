@@ -88,6 +88,9 @@ function calculate() {
 
 function markStale() {
   if (!hasCalculated) return;
+
+  // 이전 계산 결과는 비교할 수 있도록 그대로 유지한다.
+  // 입력값이 바뀌었다는 사실만 알리고 재계산을 유도한다.
   resultStale.style.display = "block";
   calculateButton.textContent = "변경한 값으로 다시 계산";
 }

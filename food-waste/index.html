@@ -8,6 +8,58 @@
   <link rel="canonical" href="https://jamkkan.me/food-waste/">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/calculator.css">
+  <style>
+    .affiliate-disclosure-top {
+      display: inline-block;
+      width: auto;
+      max-width: 100%;
+      margin: 18px 0 0;
+      padding: 9px 12px;
+      border: 1px solid rgba(242, 141, 53, .28);
+      border-radius: 9px;
+      background: #E8D8C7;
+      color: #554a42;
+      font-size: .9rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .affiliate-disclosure-top strong {
+      display: inline-block;
+      margin-right: 5px;
+      color: #8a4b18;
+      font-weight: 800;
+    }
+    .affiliate-link-label {
+      margin: 34px 0 8px;
+      font-size: .9rem;
+      font-weight: 500;
+      color: #8a4b18;
+    }
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 500;
+      color: #7a4a24;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .result-assumption {
+      margin: 18px 0 0;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: rgba(13, 27, 42, .05);
+      color: #5b6269;
+      font-size: .88rem;
+      line-height: 1.6;
+    }
+    .result-assumption strong { color: #0D1B2A; }
+    @media (min-width: 801px) {
+      .explanation { padding: 64px 0; }
+      .explanation .section-label { margin-bottom: 12px; }
+      .explanation h2 { margin-bottom: 18px; }
+    }
+  </style>
 </head>
 <body>
   <header class="header"><div class="container header-inner"><a href="../" class="logo">잠깐.</a><span class="header-message">결정하기 전에, 잠깐.</span></div></header>
@@ -16,6 +68,7 @@
       <a href="../" class="back">← 처음으로</a><p class="eyebrow">FOOD WASTE DISPOSER</p>
       <h1>음식물처리기 사기 전에, <span>잠깐.</span></h1>
       <p>제품 가격만 보지 말고,<br>음식물쓰레기를 버리러 가는 시간과 예상 유지비까지 같이 계산해보세요.</p>
+      <div class="affiliate-disclosure-top" role="note" aria-label="광고 및 제휴 안내"><strong>광고·제휴 안내</strong> 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</div>
     </div></section>
 
     <section class="calculator-section"><div class="container calculator-layout">
@@ -33,7 +86,7 @@
         <div class="check-result">
           <strong>유지비는 월 8,000원으로 계산합니다.</strong>
           <p>한국소비자원 건조·분쇄형 9개 제품 시험에서 주 2회 사용 시 연간 전기요금은 6,000~24,300원, 탈취필터 교체비용은 46,000~159,600원이었습니다. 월 8,000원은 이 시험 범위를 참고해 잠깐.이 계산 편의를 위해 정한 대표 가정값이며, 특정 제품의 실제 유지비나 공식 평균값은 아닙니다.</p>
-          <p class="capacity-source"><a href="https://www.kca.go.kr/kca/sub.do?menukey=5293&amp;mode=view&amp;no=1003809028" target="_blank" rel="noopener noreferrer">한국소비자원 시험·평가 결과 보기</a></p>
+          <p class="capacity-source"><a class="source-link" href="https://www.kca.go.kr/kca/sub.do?menukey=5293&amp;mode=view&amp;no=1003809028" target="_blank" rel="noopener noreferrer" aria-label="한국소비자원 시험·평가 결과 새 창에서 보기">한국소비자원 시험·평가 결과 보기 ↗</a></p>
         </div>
 
         <div id="resultStale" class="result-stale">입력값이 변경되었습니다. 변경한 값으로 다시 계산해주세요.</div>
@@ -54,8 +107,9 @@
           <div class="result-message" id="resultMessage"></div>
           <div class="check-result"><strong>구매 전에 같이 확인해보세요.</strong><ul><li>내가 자주 버리는 음식물을 투입할 수 있는지</li><li>필터·미생물제 등 소모품 교체주기와 가격</li><li>소음·냄새와 설치공간, 환기 조건</li><li>처리 후 부산물을 어떻게 배출해야 하는지</li></ul></div>
           <div class="result-actions"><button type="button" id="editButton" class="result-action-button primary">값 바꿔서 다시 계산</button><button type="button" id="resetButton" class="result-action-button">처음부터</button></div>
-          <div class="affiliate-slot" data-category="음식물처리기" data-url=""></div>
-          <p class="assumption">결과는 입력한 제품가격·배출패턴과 월 8,000원의 유지비 가정값을 이용한 추정치입니다. 통 비우기·세척·필터 교체 등 제품별 관리시간은 표준화하기 어려워 되찾는 시간 계산에 포함하지 않았습니다. 실제 제품의 유지비와 관리방식은 구매 전에 확인해주세요.</p>
+          <p class="result-assumption"><strong>계산 기준</strong><br>입력한 제품가격·배출패턴과 월 8,000원의 유지비 가정값을 이용한 추정치입니다. 통 비우기·세척 등 제품별 관리시간은 표준화하기 어려워 되찾는 시간에는 포함하지 않았습니다.</p>
+          <p class="affiliate-link-label">광고·제휴 링크</p>
+          <div class="affiliate-slot" data-category="음식물처리기" data-url="https://link.coupang.com/a/hpSvoT1NF6"></div>
         </div>
       </aside>
     </div></section>
