@@ -247,3 +247,18 @@
 .affiliate-button { display:flex; min-height:48px; align-items:center; justify-content:center; padding:11px 16px; border-radius:12px; background:var(--navy); color:var(--cream); font-size:14px; font-weight:800; text-align:center; }
 .affiliate-button:hover { filter:brightness(1.08); }
 .affiliate-disclosure { margin:13px 0 0; color:#8A8A8A; font-size:11px; line-height:1.55; }
+
+/* USE-COST calculator accent: brand chrome stays orange; calculator UI uses teal. */
+.cost-calculator .calculator-hero .back:hover,
+.cost-calculator .calculator-hero h1 strong,
+.cost-calculator .input-section-title,
+.cost-calculator .result-main strong,
+.cost-calculator .result-message strong,
+.cost-calculator .guide-kicker,
+.cost-calculator .affiliate-kicker { color:#2E8B7B; }
+.cost-calculator .input-wrap input:focus,
+.cost-calculator .input-wrap select:focus { border-color:#2E8B7B; }
+.cost-calculator .calculate-button,
+.cost-calculator .result-action-button.primary { background:#2E8B7B; }
+.cost-calculator .result-action-button.primary { border-color:#2E8B7B; }
+.cost-calculator .result-final strong { color:#64C7B5; }

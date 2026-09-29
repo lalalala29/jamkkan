@@ -15,17 +15,16 @@ const resultEmpty = document.getElementById("resultEmpty");
 const resultContent = document.getElementById("resultContent");
 const resultSummary = document.getElementById("resultSummary");
 const resultStale = document.getElementById("resultStale");
-const totalUsesElement = document.getElementById("totalUses");
+const usesPerYearElement = document.getElementById("usesPerYear");
+const totalUsesLabel = document.getElementById("totalUsesLabel");
 const electricityTotalElement = document.getElementById("electricityTotal");
-const productCostPerUseElement = document.getElementById("productCostPerUse");
-const totalCostLabel = document.getElementById("totalCostLabel");
-const totalCostElement = document.getElementById("totalCost");
-const costPerUseElement = document.getElementById("costPerUse");
-const totalUsesFormula = document.getElementById("totalUsesFormula");
+const electricityLabel = document.getElementById("electricityLabel");
 const electricityFormula = document.getElementById("electricityFormula");
-const productCostFormula = document.getElementById("productCostFormula");
-const totalCostFormula = document.getElementById("totalCostFormula");
+const costPerUseElement = document.getElementById("costPerUse");
+const usesPerYearFormula = document.getElementById("usesPerYearFormula");
 const costPerUseFormula = document.getElementById("costPerUseFormula");
+const finalResult = document.getElementById("finalResult");
+const finalFormula = document.getElementById("finalFormula");
 const resultMessage = document.getElementById("resultMessage");
 const editButton = document.getElementById("editButton");
 const resetButton = document.getElementById("resetButton");
@@ -42,43 +41,39 @@ let hasCalculated = false;
 function calculate() {
   const v = validateInputs(inputRules);
   if (!v) return;
-
   const capacity = ELECTRICITY_PER_USE[capacityInput.value];
   if (!capacity) return;
 
-  const totalUses = v.usesPerWeek * 52 * v.years;
+  const usesPerYear = v.usesPerWeek * 52;
+  const totalUses = usesPerYear * v.years;
   const electricityTotal = capacity.won * totalUses;
   const totalCost = v.price + electricityTotal;
-  const productCostPerUse = v.price / totalUses;
   const costPerUse = totalCost / totalUses;
-  const monthlyCost = totalCost / (v.years * 12);
 
-  if (!isValidCalculationNumber(totalUses, electricityTotal, totalCost, productCostPerUse, costPerUse, monthlyCost)) return;
+  if (!isValidCalculationNumber(usesPerYear, totalUses, electricityTotal, totalCost, costPerUse)) return;
 
-  resultSummary.textContent = `${capacity.label} · 주 ${v.usesPerWeek}회 · ${v.years}년 사용 · 전기료 1회 ${formatWon(capacity.won)} 대표값`;
-  totalUsesElement.textContent = formatNumber(totalUses) + "회";
+  resultSummary.textContent = `${capacity.label} · 주 ${v.usesPerWeek}회 · ${v.years}년`;
+  totalUsesLabel.textContent = `${v.years}년 예상 사용횟수`;
+  usesPerYearElement.textContent = `약 ${formatNumber(totalUses)}회`;
+  electricityLabel.textContent = `${v.years}년 예상 전기료`;
   electricityTotalElement.textContent = formatWon(electricityTotal);
-  productCostPerUseElement.textContent = formatWon(productCostPerUse);
-  totalCostLabel.textContent = `${v.years}년 예상 총비용`;
-  totalCostElement.textContent = formatWon(totalCost);
-  costPerUseElement.textContent = formatWon(costPerUse) + " / 1회";
+  electricityFormula.textContent = `1회 예상 전기료 ${formatWon(capacity.won)} × ${formatNumber(totalUses)}회 · ${capacity.label}급 1등급 건조기 대표값`;
+  costPerUseElement.textContent = formatWon(costPerUse);
 
-  totalUsesFormula.textContent = `주 ${v.usesPerWeek}회 × 52주 × ${v.years}년 = ${formatNumber(totalUses)}회`;
-  electricityFormula.textContent = `${formatWon(capacity.won)} × ${formatNumber(totalUses)}회 = ${formatWon(electricityTotal)}`;
-  productCostFormula.textContent = `${formatWon(v.price)} ÷ ${formatNumber(totalUses)}회 ≈ ${formatWon(productCostPerUse)}`;
-  totalCostFormula.textContent = `제품 ${formatWon(v.price)} + 예상 전기료 ${formatWon(electricityTotal)}`;
-  costPerUseFormula.textContent = `${formatWon(totalCost)} ÷ ${formatNumber(totalUses)}회 ≈ ${formatWon(costPerUse)}`;
+  usesPerYearFormula.textContent = `주 ${v.usesPerWeek}회 × 52주 × ${v.years}년`;
+  costPerUseFormula.textContent = `제품가격 + 예상 전기료 ${formatWon(electricityTotal)} ÷ ${formatNumber(totalUses)}회`;
+
+  finalResult.innerHTML = `약 2시간대에 건조하고,<br/>${v.years}년간 약 ${formatNumber(totalUses)}번 사용`;
+  finalFormula.innerHTML = `1회당 예상비용 약 ${formatWon(costPerUse)}<br/>건조시간은 공개 시험 참고값 · 사용횟수와 비용은 입력값 기준`;
 
   resultMessage.replaceChildren(
-    createText(`주 ${v.usesPerWeek}회 사용한다면 ${v.years}년 동안 약 `),
-    createStrongText(`${formatNumber(totalUses)}번`),
-    createText(" 사용하게 됩니다."),
+    createText("KCA 공개 시험에서는 9~10kg급, 표시용량 50% 면 시험부하 기준 약 "),
+    createStrongText("2시간대"),
+    createText("에 건조가 끝났습니다. 선택한 용량의 예상시간이 아닌 공개 시험 참고값입니다."),
     createBreak(), createBreak(),
-    createText("제품가격과 예상 전기료를 사용기간 전체로 나누면 한 달에 약 "),
-    createStrongText(formatWon(monthlyCost)),
-    createText(", 건조 한 번에는 약 "),
-    createStrongText(formatWon(costPerUse)),
-    createText("을 쓰는 셈입니다. 이 비용으로 빨래를 직접 널고 걷는 과정을 줄이는 것이 나에게 그만한 가치가 있는지 판단해보세요.")
+    createText(`주 ${v.usesPerWeek}회, ${v.years}년 사용 기준 예상 전기료는 `),
+    createStrongText(formatWon(electricityTotal)),
+    createText(`이며 제품가격까지 포함한 1회당 예상비용은 ${formatWon(costPerUse)}입니다.`)
   );
 
   resultEmpty.style.display = "none";
@@ -87,10 +82,7 @@ function calculate() {
   calculateButton.textContent = "계산해보기";
   hasCalculated = true;
 
-  if (window.JamkkanAnalytics) {
-    window.JamkkanAnalytics.trackCalculation("건조기");
-  }
-
+  if (window.JamkkanAnalytics) window.JamkkanAnalytics.trackCalculation("건조기");
   setTimeout(() => document.querySelector(".result-box").scrollIntoView({ behavior: "smooth", block: "start" }), 100);
 }
 
@@ -103,10 +95,7 @@ function markStale() {
 function moveToInputs() {
   const box = document.querySelector(".calculator-box");
   box.scrollIntoView({ behavior: "smooth", block: "start" });
-  setTimeout(() => {
-    priceInput.focus({ preventScroll: true });
-    priceInput.select();
-  }, 250);
+  setTimeout(() => { priceInput.focus({ preventScroll: true }); priceInput.select(); }, 250);
 }
 
 function reset() {

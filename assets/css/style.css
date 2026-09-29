@@ -298,3 +298,163 @@ a {
   line-height: 1.5;
   font-weight: 600;
 }
+/* ========================================
+   CALCULATOR TRACKS — TIME VALUE / USE COST
+======================================== */
+.hero-sub strong { color:rgba(255,255,255,.9); font-weight:700; }
+.calculator-tracks { display:grid; gap:56px; }
+.calculator-track { padding:34px; border:1px solid var(--line); border-radius:28px; }
+.track-heading { display:flex; align-items:flex-start; gap:18px; margin-bottom:28px; }
+.track-heading h3 { margin:1px 0 8px; font-size:24px; letter-spacing:-1px; }
+.track-heading p { margin:0; color:var(--muted); font-size:14px; line-height:1.65; }
+.track-badge { flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; min-width:82px; padding:8px 12px; border-radius:999px; font-size:12px; font-weight:800; }
+.time-track { background:#FFFCF8; }
+.time-track .track-badge, .time-card .card-status { background:var(--orange); color:#fff; }
+.time-card:hover { border-color:var(--orange); }
+.time-card .card-link { color:var(--orange); }
+.cost-track { background:#F7FCFB; }
+.cost-track .track-badge, .cost-card .card-status { background:#2E8B7B; color:#fff; }
+.cost-card:hover { border-color:#2E8B7B; }
+.cost-card .card-link { color:#2E8B7B; }
+.calculator-track .card-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.cost-track .decision-card { max-width:calc((100% - 36px)/3); }
+.principle p strong { color:var(--text); font-weight:700; }
+@media (max-width:720px) {
+  .calculator-tracks { gap:32px; }
+  .calculator-track { padding:22px; border-radius:22px; }
+  .track-heading { display:block; }
+  .track-badge { margin-bottom:16px; }
+  .track-heading h3 { font-size:21px; }
+  .calculator-track .card-grid { grid-template-columns:1fr; }
+  .cost-track .decision-card { max-width:none; }
+}
+
+/* ========================================
+   2-TRACK HOME VISUAL REFINEMENT
+======================================== */
+
+/* Hero: give the two-line brand statement more breathing room */
+.hero h1 strong {
+  display: inline-block;
+  margin-top: 18px;
+}
+
+/* Category blocks: category color should be readable before the cards */
+.calculator-track {
+  position: relative;
+  overflow: hidden;
+  border-width: 1px;
+}
+
+.time-track {
+  background: #FFF7ED;
+  border-color: #F4D7B8;
+}
+
+.cost-track {
+  background: #EEF8F5;
+  border-color: #BFDCD5;
+}
+
+.track-heading {
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(13, 27, 42, .08);
+}
+
+.track-badge {
+  min-width: 86px;
+  padding: 9px 14px;
+}
+
+/* Product cards: one category label per section is enough. Use pictograms on cards. */
+.decision-card {
+  min-height: 300px;
+  border-width: 1px;
+  box-shadow: 0 8px 22px rgba(13, 27, 42, .035);
+}
+
+.time-card {
+  background: #FFFDFC;
+  border-color: #EED8C2;
+  border-top: 3px solid var(--orange);
+}
+
+.cost-card {
+  background: #FBFEFD;
+  border-color: #C7DED8;
+  border-top: 3px solid #2E8B7B;
+}
+
+.time-card:hover {
+  border-color: var(--orange);
+}
+
+.cost-card:hover {
+  border-color: #2E8B7B;
+}
+
+.product-icon {
+  width: 58px;
+  height: 58px;
+  margin-bottom: 30px;
+  border-radius: 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-icon svg {
+  width: 34px;
+  height: 34px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.time-card .product-icon {
+  color: #D86F16;
+  background: #FFE9D2;
+}
+
+.cost-card .product-icon {
+  color: #227667;
+  background: #DCEFEA;
+}
+
+.cost-card .card-link {
+  color: #237D6D;
+}
+
+/* Do not shrink a single cost card inside an already 3-column grid. */
+.cost-track .decision-card {
+  max-width: none;
+}
+
+@media (max-width: 720px) {
+  .hero h1 strong {
+    margin-top: 12px;
+  }
+
+  .calculator-track {
+    padding: 20px;
+  }
+
+  .track-heading {
+    padding-bottom: 20px;
+  }
+
+  .decision-card {
+    min-height: 240px;
+  }
+}
+
+.footer .footer-legal {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,.10);
+  color: rgba(255,255,255,.36);
+  font-size: 12px;
+  line-height: 1.7;
+}

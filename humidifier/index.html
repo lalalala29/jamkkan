@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>가습기 살까 말까? 전기료·유지비 계산 | 잠깐.</title>
+<meta content="가습기 사기 전에 잠깐. 제품 가격, 가습 방식, 하루 사용시간과 사용시기를 기준으로 하루 사용비용, 한 달 사용비용과 장기 총비용을 계산해보세요." name="description"/>
+<link href="https://jamkkan.me/humidifier/" rel="canonical"/>
+<link href="../assets/css/style.css" rel="stylesheet"/>
+<link href="../assets/css/calculator.css" rel="stylesheet"/>
+<style>
+    .affiliate-disclosure-top {
+      display: inline-block;
+      width: auto;
+      max-width: 100%;
+      margin: 18px 0 0;
+      padding: 9px 12px;
+      border: 1px solid rgba(242, 141, 53, .28);
+      border-radius: 9px;
+      background: #E8D8C7;
+      color: #554a42;
+      font-size: .9rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .affiliate-disclosure-top strong {
+      display: inline-block;
+      margin-right: 5px;
+      color: #8a4b18;
+      font-weight: 800;
+    }
+    .affiliate-link-label {
+      margin: 34px 0 8px;
+      font-size: .9rem;
+      font-weight: 500;
+      color: #8a4b18;
+    }
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 400;
+      color: #7a4a24;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .input-source-note {
+      margin: 14px 0 0;
+      color: #6E7781;
+      font-size: .84rem;
+      line-height: 1.65;
+    }
+    .input-source-note .source-link { margin-right: 10px; }
+    .type-help {
+      position: relative;
+      margin: 12px 0 0;
+      padding-left: 22px;
+      color: #6E7781;
+      line-height: 1.6;
+    }
+    .type-help::before {
+      content: "?";
+      position: absolute;
+      left: 0;
+      top: .08em;
+      width: 16px;
+      height: 16px;
+      border: 1px solid #AEB4BA;
+      border-radius: 50%;
+      color: #7B838B;
+      font-size: 10px;
+      font-weight: 800;
+      line-height: 14px;
+      text-align: center;
+    }
+    .result-assumption {
+      margin: 18px 0 0;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: rgba(13, 27, 42, .05);
+      color: #5b6269;
+      font-size: .88rem;
+      line-height: 1.6;
+    }
+    .result-assumption strong { display:block; margin-bottom:8px; color:#0D1B2A; line-height:1.35; }
+    @media (min-width: 801px) {
+      .explanation { padding: 64px 0; }
+      .explanation .section-label { margin-bottom: 12px; }
+      .explanation h2 { margin-bottom: 18px; }
+    }
+  </style>
+<script defer="" src="/assets/js/analytics.js"></script>
+</head>
+<body class="cost-calculator">
+<header class="header"><div class="container header-inner"><a class="logo" href="../">잠깐.</a><span class="header-message">결정하기 전에, 잠깐.</span></div></header>
+<main>
+<section class="calculator-hero"><div class="container">
+<a class="back" href="../">← 처음으로</a><p class="eyebrow">HUMIDIFIER</p>
+<h1>가습기 사기 전에, <span>잠깐.</span></h1>
+<p>제품 가격만 보지 말고,<br/>가습 방식과 사용시간까지 넣어 실제 유지비를 계산해보세요.</p><div aria-label="광고 및 제휴 안내" class="affiliate-disclosure-top" role="note"><strong>광고·제휴 안내</strong> 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</div>
+</div></section>
+<section class="calculator-section"><div class="container calculator-layout">
+<div class="calculator-box">
+<h2>우리 집 기준으로 계산하기</h2>
+<p class="box-description">보고 있는 제품과 평소 사용패턴에 가까운 값을 넣어보세요.</p>
+<p class="input-section-title first">구매 조건</p>
+<div class="input-group"><label for="price">생각 중인 가습기 가격</label><p class="input-help">배송비나 추가 구성품 비용까지 함께 보고 싶다면 제품 가격에 더해서 입력해주세요.</p><div class="input-wrap"><input autocomplete="off" id="price" inputmode="numeric" type="text" value="150000"/><span class="input-unit">원</span></div></div>
+<div class="input-group"><label for="type">가습 방식</label><p class="input-help">제품 상세정보에서 초음파식, 가열식, 복합식, 기화식 등의 가습방식을 확인할 수 있어요.</p><div class="input-wrap select-wrap"><select id="type"><option selected value="ultrasonic">초음파식</option><option value="heated">가열식</option><option value="hybrid">복합식</option><option value="evaporative">기화식</option></select></div><p class="input-help type-help" id="typeHelp">물을 미세하게 진동시켜 분사해요. 전기료가 낮은 편이고 세척 관리가 중요해요.</p></div>
+<p class="input-section-title">사용 패턴</p>
+<div class="input-group"><label for="hoursPerDay">하루 평균 몇 시간 사용할까요?</label><div class="input-wrap"><input id="hoursPerDay" max="24" min="1" type="number" value="8"/><span class="input-unit">시간</span></div></div>
+<div class="input-group"><label for="season">주로 언제 사용할까요?</label><div class="input-wrap select-wrap"><select id="season"><option selected value="6">건조한 계절 위주 · 약 6개월</option><option value="9">필요할 때 자주 · 약 9개월</option><option value="12">거의 1년 내내 · 약 12개월</option></select></div></div>
+<div class="input-group"><label for="years">몇 년 정도 사용할 예정인가요?</label><div class="input-wrap select-wrap"><select id="years"><option value="1">1년</option><option value="2">2년</option><option selected value="3">3년</option><option value="5">5년</option><option value="7">7년</option><option value="10">10년</option></select></div></div>
+<div class="check-result calculation-source">
+<strong>한국소비자원 가정용 가습기 시험 결과를 기준으로 계산합니다.</strong>
+<p>시험조건인 하루 8시간·월 30일·6개월 사용을 기준점으로 두고, 가습방식별 시험제품의 대표 전기료를 사용시간과 사용시기에 맞춰 환산합니다. 미니·휴대용처럼 소비전력과 가습량이 크게 다른 제품은 실제 전기료와 차이가 클 수 있습니다.</p>
+<p class="capacity-source"><a aria-label="한국소비자원 가습기 시험·평가 결과 새 창에서 보기" class="source-link" href="https://www.kca.go.kr/home/sub.do?menukey=4004&amp;mode=view&amp;no=1003944731" rel="noopener noreferrer" target="_blank">한국소비자원 시험·평가 결과 보기 ↗</a></p>
+</div>
+<div class="result-stale" id="resultStale">입력값이 변경되었습니다. 변경한 값으로 다시 계산해주세요.</div>
+<button class="calculate-button" id="calculateButton" type="button">계산해보기</button>
+</div>
+<aside class="result-box"><h2>계산 결과</h2>
+<div class="result-empty" id="resultEmpty">왼쪽에 제품과 사용패턴을 입력하고<br/>계산해보세요.</div>
+<div class="result-content" id="resultContent">
+<div class="result-summary" id="resultSummary"></div>
+<div class="result-grid">
+<div class="result-item"><span>하루 사용비용</span><strong id="dailyCost">-</strong><small class="result-formula" id="dailyFormula"></small></div>
+<div class="result-item"><span>한 달 사용비용</span><strong id="monthlyCost">-</strong><small class="result-formula" id="monthlyFormula"></small></div>
+<div class="result-item"><span id="totalCostLabel">예상 총비용</span><strong id="totalCost">-</strong><small class="result-formula" id="totalCostFormula"></small></div>
+</div>
+<div class="result-final"><span>결국, 제품가격까지 포함하면?</span><strong id="monthlyTotal">-</strong><small class="result-formula" id="monthlyTotalFormula"></small></div>
+<div class="result-message" id="resultMessage"></div>
+<div class="check-result"><strong>구매 전에 같이 확인해보세요.</strong><ul><li>물통 용량과 하루 사용량에 맞는 급수 횟수</li><li>세척이 쉬운 구조인지와 권장 세척 주기</li><li>교체형 필터 사용 여부와 실제 필터 가격</li><li>침실에서 쓴다면 소음과 표시등 밝기</li></ul></div>
+<div class="result-actions"><button class="result-action-button primary" id="editButton" type="button">값 바꿔서 다시 계산</button><button class="result-action-button" id="resetButton" type="button">처음부터</button></div>
+<p class="result-assumption"><strong>계산 기준</strong>입력한 제품가격, 가습방식, 하루 사용시간, 사용시기와 사용기간을 기준으로 계산합니다. 전기료는 한국소비자원 가정용 가습기 시험 결과의 방식별 대표값을 적용하며 필터·세척용품 등 추가 비용은 포함하지 않습니다. 특히 기화식·복합식은 교체형 필터가 있는 제품의 실제 유지비가 더 높을 수 있고, 미니·휴대용 제품은 시험제품과 소비전력이 달라 실제 전기료와 차이가 클 수 있습니다.</p>
+<p class="affiliate-link-label">광고·제휴 링크</p>
+<div class="affiliate-slot" data-category="가습기" data-url="https://link.coupang.com/a/hrz0PjRz52"></div>
+</div>
+</aside>
+</div></section>
+<section class="explanation"><div class="container explanation-inner"><p class="section-label">WHY THIS NUMBER?</p><h2>같은 가습기라도<br/>방식과 사용시간에 따라 유지비가 달라집니다.</h2><p>한국소비자원 시험에서는 초음파식과 가열식의 전기료 차이가 크게 나타났습니다. 잠깐.은 시험조건을 기준점으로 두고 내가 사용할 시간과 기간에 맞춰 예상 전기료를 환산합니다.</p><p>물통 용량(L)은 전기료와 단순 비례하지 않아 계산 변수로 넣지 않았습니다. 필터 비용도 제품마다 차이가 커 임의의 대표값을 더하지 않고, 구매 후보 제품에서 별도로 확인할 수 있게 안내합니다.</p></div></section>
+</main>
+<section class="guide-seo"><div class="container"><div aria-labelledby="humidifier-guide-title" class="guide-section">
+<div class="guide-intro"><p class="section-label">BEFORE YOU DECIDE</p><h2 id="humidifier-guide-title">방식부터 확인하면,<br/>유지비 차이가 보입니다.</h2><div aria-hidden="true" class="section-line"></div><p>가습기는 물통 크기만 볼 것이 아니라 가습방식, 세척방법, 필터와 사용시간을 함께 비교해야 합니다.</p></div>
+<div class="guide-grid">
+<article class="guide-card"><h3>초음파식</h3><p>전기료가 낮은 편이지만 물을 직접 미세입자로 분사하는 방식이라 물통과 내부를 자주 세척하는 관리가 중요합니다.</p></article>
+<article class="guide-card"><h3>가열식</h3><p>물을 가열해 수증기로 내보내는 방식입니다. 전기 사용량이 큰 편이고 뜨거운 증기나 토출부로 인한 화상에도 주의해야 합니다.</p></article>
+<article class="guide-card"><h3>복합식</h3><p>두 가지 이상의 가습방식을 결합합니다. 선택한 모드와 제품 설계에 따라 소비전력 차이가 커질 수 있습니다.</p></article>
+<article class="guide-card"><h3>기화식</h3><p>물을 머금은 필터 등에 바람을 통과시켜 증발시키는 방식입니다. 전기료는 낮은 편이지만 교체형 필터 비용을 확인해야 합니다.</p></article>
+</div>
+<div class="guide-note"><h3>물통의 L 숫자만으로 전기료를 계산하지 않습니다.</h3><p>수조용량은 급수 편의성과 연속 사용시간을 판단하는 데 중요하지만 소비전력이나 가습량과 단순 비례하지 않습니다. 구매 전에는 실제 가습량, 물통 관리방법, 필터 가격을 함께 확인해주세요.</p></div>
+</div></div></section>
+<footer class="footer"><div class="container footer-inner"><strong>잠깐.</strong><p>결정을 대신하지 않습니다.<br/>결정하기 전에 한 번 더 볼 수 있게 합니다.</p><p class="footer-legal">© 2026 잠깐. All rights reserved.<br/>계산 결과는 입력값과 공개 자료를 바탕으로 한 참고용 정보이며, 실제 비용 및 결과는 사용 환경에 따라 달라질 수 있습니다.</p></div></footer>
+<script src="../assets/js/common.js"></script><script src="../assets/js/affiliate.js"></script><script src="./calculator.js"></script>
+</body>
+</html>
