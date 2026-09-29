@@ -177,6 +177,10 @@ function calculateDishwasher() {
   hasCalculated = true;
   resultStale.style.display = "none";
   calculateButton.textContent = "계산해보기";
+
+  if (window.JamkkanAnalytics) {
+    window.JamkkanAnalytics.trackCalculation("식기세척기");
+  }
 }
 
 function renderDishwasherResult(result) {

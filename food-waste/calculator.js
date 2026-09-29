@@ -83,6 +83,11 @@ function calculate() {
   resultStale.style.display = "none";
   calculateButton.textContent = "계산해보기";
   hasCalculated = true;
+
+  if (window.JamkkanAnalytics) {
+    window.JamkkanAnalytics.trackCalculation("음식물처리기");
+  }
+
   setTimeout(() => document.querySelector(".result-box").scrollIntoView({ behavior: "smooth", block: "start" }), 100);
 }
 
