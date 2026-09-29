@@ -50,6 +50,20 @@
     .check-result strong { display:block; margin-bottom:12px; font-size:15px; }
     .check-result ul { margin:0; padding-left:19px; color:var(--muted); font-size:13px; line-height:1.8; }
 
+    /* Calculation-source cards use the same typography scale as the result-side calculation basis. */
+    .calculation-source {
+      font-size: .88rem;
+      line-height: 1.6;
+    }
+    .calculation-source strong {
+      font-size: inherit;
+      line-height: inherit;
+    }
+    .calculation-source p {
+      font-size: inherit;
+      line-height: inherit;
+    }
+
     .assumption { margin:18px 0 0; color:#929292; font-size:11px; line-height:1.6; }
     .result-summary { margin:18px 0 0; padding:14px 16px; background:#F8F8F6; border-radius:12px; color:var(--muted); font-size:12px; line-height:1.6; }
     .result-stale { display:none; margin:16px 0 0; padding:12px 14px; border-radius:10px; background:#FFF7EE; color:#8A531F; font-size:12px; font-weight:700; line-height:1.5; }
