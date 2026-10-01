@@ -262,3 +262,7 @@
 .cost-calculator .result-action-button.primary { background:#2E8B7B; }
 .cost-calculator .result-action-button.primary { border-color:#2E8B7B; }
 .cost-calculator .result-final strong { color:#64C7B5; }
+
+    /* SEO guide cards: consistent paragraph rhythm and emphasis */
+    .guide-card-seo p + p { margin-top: 12px; }
+    .guide-card-seo p strong { color: var(--text); font-weight: 700; }
