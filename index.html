@@ -19,6 +19,13 @@
 
   <link rel="stylesheet" href="./assets/css/style.css">
   <script src="/assets/js/analytics.js" defer></script>
+<style>
+/* Keep the transition between calculator cards and the next section compact. */
+.decisions + .principle{margin-top:0;}
+.decisions{padding-bottom:64px;}
+.principle{padding-top:72px;}
+@media(max-width:800px){.decisions{padding-bottom:44px}.principle{padding-top:52px}}
+</style>
 </head>
 
 <body>
@@ -105,7 +112,11 @@
 
             <div class="card-grid">
               <a href="./humidifier/" class="decision-card active-card cost-card">
-                <div><span class="product-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 7c-6 9-12 15-12 23a12 12 0 0 0 24 0c0-8-6-14-12-23Z"/><path d="M18 31c1 4 4 6 8 6"/></svg></span><h3>가습기</h3><p>가습 방식과 사용시간에 따라<br>몇 년 동안 실제 얼마가 들까?</p></div>
+                <div><span class="product-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 7c-6 9-12 15-12 23a12 12 0 0 0 24 0c0-8-6-14-12-23Z"/><path d="M18 31c1 4 4 6 8 6"/></svg></span><h3>가습기</h3><p>가열식이 정말 전기세 폭탄일까?<br>우리 집 사용시간으로 확인해볼까?</p></div>
+                <span class="card-link">계산해보기 →</span>
+              </a>
+              <a href="./dehumidifier/" class="decision-card active-card cost-card">
+                <div><span class="product-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="9" y="6" width="30" height="36" rx="5"/><path d="M15 13h18M15 18h18M15 23h12"/><path d="M31 27c-3 4-5 6-5 9a5 5 0 0 0 10 0c0-3-2-5-5-9Z"/></svg></span><h3>제습기</h3><p>장마철 하루 종일 켜면<br>한 달 전기세는 얼마나 나올까?</p></div>
                 <span class="card-link">계산해보기 →</span>
               </a>
             </div>

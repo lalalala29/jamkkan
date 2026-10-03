@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>제습기 살까 말까? 전기료·사용비용 계산 | 잠깐.</title>
+<meta content="제습기 사기 전에 잠깐. 제품 가격과 사용시간을 넣고 하루·한 달·연간 사용기간의 예상 전기료와 장기 총비용을 확인해보세요." name="description"/>
+<link href="https://jamkkan.me/dehumidifier/" rel="canonical"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="잠깐."/>
+<meta property="og:title" content="제습기 살까 말까? 전기료·사용비용 계산 | 잠깐."/>
+<meta property="og:description" content="제습기 제품가격과 사용시간을 넣고 하루·한 달·연간 사용기간의 예상 전기료와 장기 총비용을 확인해보세요."/>
+<meta property="og:url" content="https://jamkkan.me/dehumidifier/"/>
+<link href="../assets/css/style.css" rel="stylesheet"/>
+<link href="../assets/css/calculator.css" rel="stylesheet"/>
+<style>
+    .affiliate-disclosure-top {
+      display: inline-block;
+      width: auto;
+      max-width: 100%;
+      margin: 18px 0 0;
+      padding: 9px 12px;
+      border: 1px solid rgba(242, 141, 53, .28);
+      border-radius: 9px;
+      background: #E8D8C7;
+      color: #554a42;
+      font-size: .9rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .affiliate-disclosure-top strong {
+      display: inline-block;
+      margin-right: 5px;
+      color: #8a4b18;
+      font-weight: 800;
+    }
+    .affiliate-link-label {
+      margin: 34px 0 8px;
+      font-size: .9rem;
+      font-weight: 500;
+      color: #8a4b18;
+    }
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 400;
+      color: #7a4a24;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .input-source-note {
+      margin: 14px 0 0;
+      color: #6E7781;
+      font-size: .84rem;
+      line-height: 1.65;
+    }
+    .input-source-note .source-link { margin-right: 10px; }
+    .source-reference {
+      margin: 12px 0 0;
+      font-size: .88rem;
+      line-height: 1.6;
+    }
+    .source-reference .source-link {
+      font-size: inherit;
+      line-height: inherit;
+    }
+    .type-help {
+      position: relative;
+      margin: 12px 0 0;
+      padding-left: 22px;
+      color: #7a4a24;
+      line-height: 1.6;
+    }
+    .type-help::before {
+      content: "?";
+      position: absolute;
+      left: 0;
+      top: .08em;
+      width: 16px;
+      height: 16px;
+      border: 1px solid #AEB4BA;
+      border-radius: 50%;
+      color: #7B838B;
+      font-size: 10px;
+      font-weight: 800;
+      line-height: 14px;
+      text-align: center;
+    }
+    .result-assumption {
+      margin: 18px 0 0;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: rgba(13, 27, 42, .05);
+      color: #5b6269;
+      font-size: .88rem;
+      line-height: 1.6;
+    }
+    .result-assumption strong { display:block; margin-bottom:8px; color:#0D1B2A; line-height:1.35; }
+    @media (min-width: 801px) {
+      .explanation { padding: 64px 0; }
+      .explanation .section-label { margin-bottom: 12px; }
+      .explanation h2 { margin-bottom: 18px; }
+    }
+  </style>
+<script defer="" src="/assets/js/analytics.js"></script>
+
+<style>
+/* 사용비용 계산기 카테고리 포인트 */
+.cost-calculator .calculator-hero .eyebrow { color: #2F9183; }
+</style>
+
+
+<style>
+/* 사용비용 카테고리 포인트 — 가습기·제습기 공통 */
+.cost-calculator .calculator-hero .eyebrow,
+.cost-calculator .explanation .section-label,
+.cost-calculator .guide-intro .section-label { color:#2E8B7B; }
+.cost-calculator .guide-intro .section-line { background:#2E8B7B; }
+</style>
+
+</head>
+<body class="cost-calculator">
+<header class="header"><div class="container header-inner"><a class="logo" href="../">잠깐.</a><span class="header-message">결정하기 전에, 잠깐.</span></div></header>
+<main>
+<section class="calculator-hero"><div class="container">
+<a class="back" href="../">← 처음으로</a><p class="eyebrow">DEHUMIDIFIER</p>
+<h1>제습기 사기 전에, <span>잠깐.</span></h1>
+<p>장마철 내내 켜도 괜찮을까?<br/>하루 사용시간과 사용하는 달을 넣어 우리 집 예상 전기료를 확인해보세요.</p><div aria-label="광고 및 제휴 안내" class="affiliate-disclosure-top" role="note"><strong>광고·제휴 안내</strong> 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</div>
+</div></section>
+<section class="calculator-section"><div class="container calculator-layout">
+<div class="calculator-box">
+<h2>우리 집 기준으로 계산하기</h2>
+<p class="box-description">보고 있는 제품 가격과 평소 사용패턴에 가까운 값을 넣어보세요.</p>
+<p class="input-section-title first">구매 조건</p>
+<div class="input-group"><label for="price">생각 중인 제습기 가격</label><p class="input-help">배송비나 추가 구성품 비용까지 함께 보고 싶다면 제품 가격에 더해서 입력해주세요.</p><div class="input-wrap"><input autocomplete="off" id="price" inputmode="numeric" type="text" value="300000"/><span class="input-unit">원</span></div></div>
+<p class="input-section-title">사용 패턴</p>
+<div class="input-group"><label for="hoursPerDay">하루 평균 몇 시간 사용할까요?</label><p class="input-help">필요할 때만 짧게 쓰거나 하루 종일 켜두는 경우까지 실제 패턴에 가깝게 입력해주세요.</p><div class="input-wrap"><input id="hoursPerDay" max="24" min="1" type="number" value="6"/><span class="input-unit">시간</span></div></div>
+<div class="input-group"><label for="season">1년에 몇 개월 정도 사용할까요?</label><div class="input-wrap select-wrap"><select id="season"><option value="1">약 1개월</option><option selected value="3">약 3개월</option><option value="6">약 6개월</option><option value="9">약 9개월</option><option value="12">거의 1년 내내 · 약 12개월</option></select></div></div>
+<div class="input-group"><label for="years">몇 년 정도 사용할 예정인가요?</label><div class="input-wrap select-wrap"><select id="years"><option value="1">1년</option><option value="3">3년</option><option selected value="5">5년</option><option value="7">7년</option><option value="10">10년</option></select></div></div>
+<div class="check-result calculation-source">
+<strong>전기료는 공개 시험자료의 평균값을 바탕으로 계산합니다.</strong>
+<p>한국소비자원이 시험한 9개 제품은 월 171시간 기준 평균 약 8,000원이었습니다. 실제 비용은 제품과 환경에 따라 달라질 수 있습니다.</p>
+<p class="source-reference"><a aria-label="한국소비자원 제습기 시험·평가 결과 새 창에서 보기" class="source-link" href="https://www.kca.go.kr/home/sub.do?cate=00000049&amp;menukey=4004&amp;mode=view&amp;no=1003706928&amp;page=3" rel="noopener noreferrer" target="_blank">한국소비자원 시험·평가 결과 보기 ↗</a></p><p class="source-reference"><a aria-label="한국에너지공단 제습기 효율정보 새 창에서 보기" class="source-link" href="https://eep.energy.or.kr/certification/certi_list_145.aspx" rel="noopener noreferrer" target="_blank">한국에너지공단 제습기 효율정보 확인하기 ↗</a></p>
+</div>
+<div class="result-stale" id="resultStale">입력값이 변경되었습니다. 변경한 값으로 다시 계산해주세요.</div>
+<button class="calculate-button" id="calculateButton" type="button">계산해보기</button>
+</div>
+<aside class="result-box"><h2>계산 결과</h2>
+<div class="result-empty" id="resultEmpty">왼쪽에 제품과 사용패턴을 입력하고<br/>계산해보세요.</div>
+<div class="result-content" id="resultContent">
+<div class="result-summary" id="resultSummary"></div>
+<div class="result-grid">
+<div class="result-item"><span>하루 예상 전기료</span><strong id="dailyCost">-</strong><small class="result-formula" id="dailyFormula"></small></div>
+<div class="result-item"><span>한 달 예상 전기료</span><strong id="monthlyCost">-</strong><small class="result-formula" id="monthlyFormula"></small></div>
+<div class="result-item"><span>사용기간 예상 전기료</span><strong id="seasonCost">-</strong><small class="result-formula" id="seasonFormula"></small></div>
+<div class="result-item"><span id="totalCostLabel">예상 총비용</span><strong id="totalCost">-</strong><small class="result-formula" id="totalCostFormula"></small></div>
+</div>
+<div class="result-final"><span>결국, 제품가격까지 포함하면?</span><strong id="monthlyTotal">-</strong><small class="result-formula" id="monthlyTotalFormula"></small></div>
+<div class="result-message" id="resultMessage"></div>
+<div class="check-result"><strong>구매 전에 같이 확인해보세요.</strong><ul><li>사용할 공간에 맞는 공인 1일 제습량(L)</li><li>제습효율(L/kWh)과 에너지소비효율등급</li><li>물을 비우는 횟수에 영향을 주는 물통 용량</li><li>침실에서 쓴다면 소음과 연속배수 가능 여부</li></ul></div>
+<div class="result-actions"><button class="result-action-button primary" id="editButton" type="button">값 바꿔서 다시 계산</button><button class="result-action-button" id="resetButton" type="button">처음부터</button></div>
+<p class="result-assumption"><strong>계산 기준</strong>제품가격과 선택한 이용시간·개월·연수를 반영합니다. 전기료는 한국소비자원 시험 평균을 시간당 비용으로 환산했으며, 실제 금액은 제품과 환경에 따라 달라질 수 있습니다.</p>
+<p class="affiliate-link-label">광고·제휴 링크</p>
+<div class="affiliate-slot" data-category="제습기" data-url="https://link.coupang.com/a/hxO6p0jpng"></div>
+</div>
+</aside>
+</div></section>
+<section class="explanation"><div class="container explanation-inner"><p class="section-label">WHY THIS NUMBER?</p><h2>제습기는 얼마나 자주 쓰느냐에 따라<br/>유지비 차이가 커집니다.</h2><p>공개 시험에서는 제품별 소비전력 차이로 월 비용에도 차이가 있었습니다. 그래서 제품가격만 비교하기보다 내가 하루에 몇 시간, 1년에 몇 개월 사용할지를 함께 보는 편이 현실적입니다.</p><p>제습량과 물통 크기는 비용과 단순 비례하지 않아 입력항목에서 제외했습니다. 구매 후보를 좁힐 때는 공인 1일 제습량과 제습효율, 소음과 배수 방식도 함께 확인해보세요.</p></div></section>
+</main>
+<section class="guide-seo"><div class="container"><div aria-labelledby="dehumidifier-guide-title" class="guide-section">
+<div class="guide-intro"><p class="section-label">BEFORE YOU DECIDE</p><h2 id="dehumidifier-guide-title">제습기 구매 전 알아두세요.</h2><div aria-hidden="true" class="section-line"></div><p>제품가격뿐 아니라 유지비와 제습성능, 사용할 공간까지 함께 보면 내 생활에 맞는 선택인지 판단하기 쉬워집니다.</p></div>
+<div class="guide-grid">
+<article class="guide-card guide-card-seo"><h3>제습기 전기료는 한 달에 얼마나 들까?</h3><p>같은 제습기라도 소비전력과 하루 운전시간에 따라 부담이 달라집니다. 장마철처럼 오래 켜두는 시기에는 작은 차이도 누적될 수 있습니다.</p><p>구매가격만 비교하면 이후에 드는 비용을 놓치기 쉽습니다. 평소 예상하는 하루 운전시간과 1년에 쓰는 개월을 함께 보는 것이 좋습니다.</p><p><strong>내 사용패턴을 넣어 한 달 비용과 장기 총비용을 함께 비교해보세요.</strong></p><p><a class="source-link" href="./electricity/">제습기 전기료 자세히 보기 →</a></p></article>
+<article class="guide-card guide-card-seo"><h3>제습기는 하루 몇 시간 사용해야 할까?</h3><p>모든 집에 똑같이 적용되는 적정 사용시간은 정하기 어렵습니다. 실내 습도와 공간 크기, 빨래 건조 여부, 날씨와 설정습도에 따라 필요한 시간이 달라질 수 있습니다.</p><p>이 페이지의 기본값 6시간은 한국소비자원 시험조건인 월 171시간을 하루 평균으로 환산해 참고한 값입니다.</p><p><strong>정해진 시간을 따르기보다 실제 사용할 시간으로 비용을 계산하고 실내 습도에 맞춰 운전하는 편이 현실적입니다.</strong></p></article>
+<article class="guide-card guide-card-seo"><h3>제습기 용량은 몇 L가 적당할까?</h3><p>제품에 표시된 숫자만 보기보다 한국에너지공단에 등록된 공인 1일 제습량을 확인하는 것이 좋습니다. 한국소비자원도 시험 대상 이외 제품은 공인 제습성능을 확인하도록 안내했습니다.</p><p>필요한 제습성능은 주로 사용할 공간의 면적과 습도 환경에 따라 달라집니다. 물통 용량은 물을 얼마나 자주 비워야 하는지와 관련된 편의 요소로 따로 확인해야 합니다.</p><p><strong>구매할 때는 사용할 공간에 맞는 공인 1일 제습량과 제습효율을 함께 확인하세요.</strong></p></article>
+<article class="guide-card guide-card-seo"><h3>제습기의 장점과 단점은?</h3><p>제습기는 습도가 높은 계절이나 빨래 건조가 필요한 환경에서 실내 습도를 낮추는 데 활용할 수 있습니다. 이동형 제품은 필요한 공간으로 옮겨 사용할 수 있다는 장점도 있습니다.</p><p>반면 사용시간이 길어지면 전기료가 늘고 물통을 비우거나 연속배수를 관리해야 합니다. 제품에 따라 소음과 제습성능, 제습효율 차이도 있습니다.</p><p><strong>제품가격만 보기보다 유지비, 제습성능, 효율, 소음과 배수 편의까지 함께 비교하는 것이 좋습니다.</strong></p></article>
+</div>
+<div class="guide-note"><h3>내 생활에 맞는 선택인지, 숫자로 먼저 확인해보세요.</h3><p>제습기는 같은 가격대라도 제습성능과 효율이 다를 수 있습니다. 예상 비용을 확인한 뒤 구매 후보의 공인 1일 제습량과 에너지효율 정보도 함께 비교해보세요.</p></div>
+</div></div></section>
+<footer class="footer"><div class="container footer-inner"><strong>잠깐.</strong><p>결정을 대신하지 않습니다.<br/>결정하기 전에 한 번 더 볼 수 있게 합니다.</p><p class="footer-legal">© 2026 잠깐. All rights reserved.<br/>계산 결과는 입력값과 공개 자료를 바탕으로 한 참고용 정보이며, 실제 비용 및 결과는 사용 환경에 따라 달라질 수 있습니다.</p></div></footer>
+<script src="../assets/js/common.js"></script><script src="../assets/js/affiliate.js"></script><script src="./calculator.js"></script>
+</body>
+</html>
